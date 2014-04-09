@@ -438,7 +438,7 @@ module.exports = function (grunt) {
     ]);
 
     // Creates restify server instance listening on port 3000
-    var server = require('./app/app.js');
+    var server = require('./app/api/app.js');
     var ip_addr = 'localhost';
     var port    = '3000';
     server.listen(port, ip_addr, function(){
