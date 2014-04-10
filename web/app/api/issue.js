@@ -1,21 +1,24 @@
 // issue related operations
-var config = require('./config');
 
+function Issue(){
+  this.db = require('./db');
+}
 
-module.exports = {
-  findIssuies: function(req, res, next){
-    config.headerSetup(res);
-    console.log('Response to findIssuies()');
-    res.send(200, {id:123456,subject:"issue subject", content: Math.random()});
-    return next();
-  },
+Issue.prototype.findAll = function(callback){
+  this.db.execute("select * from issuies;",
+    function(err,result){
+      callback(err, result);
+    }
+  );
+};
 
-  postNewIssue: function(req, res, next){
-
-  },
-
-  findIssue: function(req, res, next){
-
-  }
+Issue.prototype.create = function(issue, callback){
 
 };
+
+Issue.prototype.find = function(issueId, callback){
+
+};
+
+
+module.exports = exports = new Issue();

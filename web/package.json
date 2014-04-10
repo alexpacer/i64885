@@ -31,7 +31,11 @@
     "grunt-karma": "^0.8.2",
     "karma": "^0.12.5",
     "karma-ng-html2js-preprocessor": "^0.1.0",
-    "restify": "^2.7.0"
+    "restify": "^2.7.0",
+    "pg": "^3.0.1",
+    "jasmine-node": "^1.14.3",
+    "underscore-node": "^0.1.2",
+    "underscore": "^1.6.0"
   },
   "engines": {
     "node": ">=0.10.0"

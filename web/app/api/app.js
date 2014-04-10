@@ -1,4 +1,4 @@
-
+var config = require('./config');
 var restify = require('restify');
 var server = restify.createServer({
     name : "i64885"
@@ -14,18 +14,30 @@ server.use(restify.CORS());
 var issue = require('./issue');
 
 var PATH = '/api/issuies';
-server.get({path: PATH, version: '0.0.1'}, issue.findIssuies);
-server.get({path: PATH + '/:issueId', version: '0.0.1'}, issue.findIssue);
-server.post({path: PATH, version: '0.0.1'}, issue.postNewIssue);
+server.get(
+  {path: PATH, version: '0.0.1'}, 
+  function(req, res, next){
+    config.headerSetup(res);
+    issue.findAll(function(err, r){
+      res.send(200, {id:123456,subject:"issue subject", content: Math.random(), result: r});
+      return next();
+    });
 
+  });
 
-function findIssuies(req, res, next){
-  res.setHeader('Access-Control-Allow-Origin','*');
-  console.log('Response to findIssuies()');
-  res.send(200, {id:123456,subject:"issue subject"});
+server.get(
+  {path: PATH + '/:issueId', version: '0.0.1'}, 
+  function(req, res, next){
+    config.headerSetup(res);
 
-  return next();
-}
+    issue.find(req.issueId, function(err, result){
+
+      return next();
+    });
+
+  });
+
+// server.post({path: PATH, version: '0.0.1'}, issue.create);
 
 
 module.exports = server;
