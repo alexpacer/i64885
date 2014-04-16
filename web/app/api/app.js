@@ -22,11 +22,10 @@ server.get(
       res.send(200, {id:123456,subject:"issue subject", content: Math.random(), result: r});
       return next();
     });
-
   });
 
 server.get(
-  {path: PATH + '/:issueId', version: '0.0.1'}, 
+  {path: PATH + '/api/:issueId', version: '0.0.1'}, 
   function(req, res, next){
     config.headerSetup(res);
 

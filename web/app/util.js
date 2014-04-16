@@ -1,3 +1,9 @@
+var _ = require('underscore-node');
+
+_.isFunction = function(obj) {
+  return !!(obj && obj.constructor && obj.call && obj.apply);
+};
+
 
 function Util(){
 }
@@ -94,6 +100,7 @@ function extend() {
     }
     return target;
   }
+
 
 
 Util.prototype.isFunction = isFunction;
