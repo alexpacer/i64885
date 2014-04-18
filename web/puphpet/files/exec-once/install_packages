@@ -1,0 +1,28 @@
+echo 'Running post provision configuration..'
+
+add-apt-repository ppa:chris-lea/node.js
+apt-get update
+apt-get -y install nodejs
+
+# install ruby
+git clone git://github.com/sstephenson/rbenv.git /usr/local/rbenv
+
+# Install ruby-build
+git clone https://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plugins/ruby-build
+
+/usr/local/rbenv/plugins/ruby-build/install.sh
+
+
+# Create ssh key pointer to host machine 
+echo "IdentifyFile ~/.ssh1/id_rsa" >> /home/vagrant/.ssh/config
+#chown vagrant:vagrant /home/vagrant/.ssh/config
+chgrp vagrant /home/vagrant/.ssh
+chmod g+s /home/vagrant/.ssh/config
+
+# Install bundlers
+gem install bundler --no-ri --no-rdoc
+gem install compass --no-ri --no-rdoc
+
+node -v
+ruby -v
+gem -v
