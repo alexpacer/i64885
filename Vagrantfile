@@ -1,6 +1,16 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+$shell = <<SCRIPT
+
+echo 'cd /etc/www' >> /home/vagrant/.bashrc
+echo 'IdentofyFile ~/.ssh1/id_rsa' >> /home/vagrant/.ssh/config
+
+SCRIPT
+
+
+
+
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
@@ -16,11 +26,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, host: 3000, guest: 3000
   config.vm.network :forwarded_port, host: 5000, guest: 5000
 
+  # use local ssh key in box
+  config.vm.synced_folder "~/.ssh", "/home/vagrant/.ssh1", :mount_options => ['fmode=600']
+
+  # bootstrap shell 
+  config.vm.provision :shell, :inline => $shell
+
   # puppet 
   config.vm.synced_folder "puppet", "/puppet"
+  config.vm.synced_folder "web", "/var/www"
 
   config.vm.provision :puppet do |puppet|
-    # puppet.module_path    = "my_modules"
     puppet.manifests_path = "puppet/manifests"
     puppet.module_path    = "puppet/modules"
     puppet.manifest_file  = "default.pp"
