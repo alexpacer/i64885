@@ -12,10 +12,18 @@ class { 'nodejs':
   version => "v0.10.26"
 }
 
-
-class{ 'postgresql': 
-  version => "v9.3.4"
+class { 'postgresql::server': 
+  postgres_password => '@bc123',
 }
+
+postgresql::server::db { 'i64885':
+  user     => 'i64885',
+  password => postgresql_password('i64885', 'i64885'),
+}
+
+# class{ 'postgresql': 
+#   version => "v9.3.4"
+# }
 
 
 # class { 'rbenv':
