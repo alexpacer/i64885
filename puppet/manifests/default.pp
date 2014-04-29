@@ -43,6 +43,6 @@ class { 'postgresql::server':
 
 postgresql::server::db { 'i64885':
   user     => 'i64885',
-  password => postgresql_password('i64885', 'i64885'),
+  password => postgresql_password('i64885', '@bc123'),
 }
 

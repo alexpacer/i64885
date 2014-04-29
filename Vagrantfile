@@ -6,6 +6,11 @@ $shell = <<SCRIPT
 echo 'cd /www' >> /home/vagrant/.bashrc
 echo 'IdentofyFile ~/.ssh1/id_rsa' >> /home/vagrant/.ssh/config
 
+echo 'export i64885_CONNECTION_STRING="postgres://i64885:@bc123@localhost/i64885"' >> /home/vagrant/.bashrc
+echo 'localhost:*:i64885:i64885:@bc123' >> /home/vagrant/.pgpass
+
+chmod 0600 /home/vagrant/.pgpass
+
 SCRIPT
 
 
@@ -31,6 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # puppet 
   config.vm.synced_folder "puppet", "/puppet"
   config.vm.synced_folder "web", "/www"
+  config.vm.synced_folder "sql", "/sql"
 
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "puppet/manifests"
