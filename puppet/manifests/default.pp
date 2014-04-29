@@ -1,4 +1,15 @@
+class prepare {
+  class { 'apt': }
+  apt::ppa { 'ppa:chris-lea/node.js': }
+}
+include prepare
 
+
+exec { "apt-update":
+    command => "/usr/bin/apt-get update"
+}
+
+Exec["apt-update"] -> Package <| |>
 
 class { 'rbenv': }
 
@@ -26,6 +37,9 @@ package {'grunt-cli':
 class { 'postgresql::server': 
   postgres_password => '@bc123',
 }
+
+
+
 
 postgresql::server::db { 'i64885':
   user     => 'i64885',

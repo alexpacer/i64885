@@ -66,7 +66,8 @@ module.exports = function (grunt) {
       options: {
         port: 5000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
+        //hostname: 'localhost',
+        hostname: '0.0.0.0',
         livereload: 5729
       },
       livereload: {
@@ -439,7 +440,7 @@ module.exports = function (grunt) {
 
     // Creates restify server instance listening on port 3000
     var server = require('./app/api/app.js');
-    var ip_addr = 'localhost';
+    var ip_addr = '0.0.0.0';
     var port    = '3000';
     server.listen(port, ip_addr, function(){
       console.log('%s listening at %s ', server.name, server.url);
