@@ -34,15 +34,18 @@ package {'grunt-cli':
 }
 
 
+class { 'postgresql::globals':
+  manage_package_repo => true,
+  version             => '9.3',
+}->
 class { 'postgresql::server': 
   postgres_password => '@bc123',
 }
 
 
 
-
 postgresql::server::db { 'i64885':
-  user     => 'i64885',
-  password => postgresql_password('i64885', '@bc123'),
+  user     => 'vagrant',
+  password => postgresql_password('vagrant', '@bc123'),
 }
 
