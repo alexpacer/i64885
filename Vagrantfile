@@ -6,7 +6,7 @@ $shell = <<SCRIPT
 echo 'cd /www' >> /home/vagrant/.bashrc
 echo 'IdentofyFile ~/.ssh1/id_rsa' >> /home/vagrant/.ssh/config
 
-echo 'export i64885_CONNECTION_STRING="postgres://i64885:@bc123@localhost/i64885"' >> /home/vagrant/.bashrc
+echo 'export i64885_CONNECTION_STRING="postgres://vagrant:@bc123@localhost/i64885"' >> /home/vagrant/.bashrc
 echo 'localhost:*:i64885:vagrant:@bc123' >> /home/vagrant/.pgpass
 
 chmod 0600 /home/vagrant/.pgpass

@@ -1,3 +1,5 @@
+
+
 CREATE TABLE person (
   _id       SERIAL UNIQUE,
   name      TEXT NOT NULL,
@@ -19,7 +21,7 @@ CREATE TABLE tags (
   name      TEXT NOT NULL
 );
   
-CREATE TABLE issue (
+CREATE TABLE issuies (
   _id       SERIAL UNIQUE,
   person    INTEGER,
   attorney  INTEGER,
