@@ -6,11 +6,14 @@ $shell = <<SCRIPT
 echo 'cd /www' >> /home/vagrant/.bashrc
 echo 'IdentofyFile ~/.ssh1/id_rsa' >> /home/vagrant/.ssh/config
 
+# Setup postgres database
 echo 'export i64885_CONNECTION_STRING="postgres://vagrant:@bc123@localhost/i64885"' >> /home/vagrant/.bashrc
 echo 'localhost:*:i64885:vagrant:@bc123' >> /home/vagrant/.pgpass
-
 chmod 0600 /home/vagrant/.pgpass
 chown vagrant:vagrant /home/vagrant/.pgpass
+
+# install gem without rdoc
+echo 'gem: --no-document' >> /home/vagrant/.gemrc
 
 # create database
 #psql -d i64885 -U vagrant -a -f /sql/createdb.sql
