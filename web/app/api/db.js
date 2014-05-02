@@ -22,7 +22,7 @@ Db.prototype.execute = function(sql, params, callback){
       });
     });
   }else{
-    pg.connect(this.connString, function(err, client, done){
+    pg.connect(this.connString, function(err, client, done){i
       if(err){
         return console.error("error connecting client from pool ", err);
       }
@@ -30,9 +30,9 @@ Db.prototype.execute = function(sql, params, callback){
         if(err){ return console.error("error executing query ", err); }
 
         if(_.isFunction(params)){
-          params(err, result);
+          params(err, result, done);
         }else{
-          callback(err, result);
+          callback(err, result, done);
         }
         
       });

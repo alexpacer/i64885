@@ -6,8 +6,8 @@ function Issue(){
 
 Issue.prototype.findAll = function(callback){
   this.db.execute("select * from issuies;",
-    function(err,result){
-      callback(err, result);
+    function(err,result, done){
+      return callback(err, result, done);
     }
   );
 };

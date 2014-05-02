@@ -9,13 +9,15 @@ server.use(restify.bodyParser());
 server.use(restify.CORS());
 
 
+
 // -- issue related
+var API_PATH = '/api';
+var CURRENT_VERSION = '0.0.1';
 
 var issue = require('./issue');
 
-var PATH = '/api/issuies';
 server.get(
-  {path: PATH, version: '0.0.1'}, 
+  {path: API_PATH + '/issuies', version: CURRENT_VERSION}, 
   function(req, res, next){
     config.headerSetup(res);
     issue.findAll(function(err, r){
@@ -25,18 +27,41 @@ server.get(
   });
 
 server.get(
-  {path: PATH + '/api/:issueId', version: '0.0.1'}, 
+  {path: API_PATH + '/issuies/:issueId', version: CURRENT_VERSION}, 
   function(req, res, next){
     config.headerSetup(res);
-
     issue.find(req.issueId, function(err, result){
-
       return next();
     });
 
   });
 
-// server.post({path: PATH, version: '0.0.1'}, issue.create);
+// ---- Victims API
+var victim = require('./victim');
 
+server.get(
+  {path: API_PATH + '/victims', version: CURRENT_VERSION },
+  function(req, res, next){
+    
+    config.headerSetup(res);
+    victim.findAll(function(err, r, done){
+      res.send(200, {result: r.rows, aa: "Hey ", random: Math.random()});
+      return next();
+    });
+
+  }
+);
+
+server.post(
+  {path: API_PATH + '/victims', version: CURRENT_VERSION },
+  function(req, res, next){
+    config.headerSetup(res);
+    console.log(req);
+    victim.create(req, function(err, r, done){
+      res.send(200, {status: "done"});
+      return next();
+    })
+  }
+);
 
 module.exports = server;

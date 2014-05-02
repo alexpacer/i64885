@@ -1,6 +1,6 @@
 
 
-CREATE TABLE person (
+CREATE TABLE victims (
   _id       SERIAL UNIQUE,
   name      TEXT NOT NULL,
   contact   JSON,

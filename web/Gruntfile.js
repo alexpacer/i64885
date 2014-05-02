@@ -32,7 +32,7 @@ module.exports = function (grunt) {
         tasks: ['bowerInstall']
       },
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/scripts/{,*/}*.js', '<%= yeoman.app %>/api/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: true
@@ -389,6 +389,15 @@ module.exports = function (grunt) {
       'connect:livereload',
       'watch'
     ]);
+
+    // Creates restify server instance listening on port 3000
+    var server = require('./app/api/app.js');
+    var ipAddress = '0.0.0.0';
+    var port    = '3000';
+    server.listen(port, ipAddress, function(){
+      console.log('%s listening at %s ', server.name, server.url);
+    });
+
   });
 
   grunt.registerTask('server', function (target) {
@@ -428,25 +437,25 @@ module.exports = function (grunt) {
   ]);
 
 
-  grunt.registerTask('server', 'Start a custom web server.', function() {
-    grunt.task.run([
-      'clean:server',
-      'bowerInstall',
-      'concurrent:server',
-      'autoprefixer',
-      'connect:livereload',
-      'watch'
-    ]);
+  // grunt.registerTask('server', 'Start a custom web server.', function() {
+  //   grunt.task.run([
+  //     'clean:server',
+  //     'bowerInstall',
+  //     'concurrent:server',
+  //     'autoprefixer',
+  //     'connect:livereload',
+  //     'watch'
+  //   ]);
 
-    // Creates restify server instance listening on port 3000
-    var server = require('./app/api/app.js');
-    var ip_addr = '0.0.0.0';
-    var port    = '3000';
-    server.listen(port, ip_addr, function(){
-      console.log('%s listening at %s ', server.name, server.url);
-    });
+  //   // Creates restify server instance listening on port 3000
+  //   var server = require('./app/api/app.js');
+  //   var ip_addr = '0.0.0.0';
+  //   var port    = '3000';
+  //   server.listen(port, ip_addr, function(){
+  //     console.log('%s listening at %s ', server.name, server.url);
+  //   });
 
 
-  });
+  // });
 
 };
