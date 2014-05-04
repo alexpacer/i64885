@@ -22,6 +22,7 @@ rbenv::build { '2.1.1': global => true }
 rbenv::gem { 'thor': ruby_version => '2.1.1' }
 rbenv::gem { 'compass': ruby_version => '2.1.1' }
 rbenv::gem { 'pg': ruby_version => '2.1.1' }
+rbenv::gem { 'foreman': ruby_version => '2.1.1' }
 rbenv::gem { 'rails': ruby_version => '2.1.1', version => '4.1.0' }
 
 
