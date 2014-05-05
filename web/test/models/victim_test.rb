@@ -8,7 +8,7 @@ class VictimTest < ActiveSupport::TestCase
     assert victim.save, "Saved victim"
   end
 
-  test "Should not create victim without name" do
+  test "should not create victim without name" do
     victim = Victim.new
     assert_not victim.save, "Saved victim without name"
   end

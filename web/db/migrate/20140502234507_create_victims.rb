@@ -4,7 +4,6 @@ class CreateVictims < ActiveRecord::Migration
       t.string :name
       t.json :contact
       t.json :location
-
       t.timestamps
     end
   end
