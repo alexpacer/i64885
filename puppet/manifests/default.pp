@@ -23,7 +23,7 @@ rbenv::gem { 'thor': ruby_version => '2.1.1' }
 rbenv::gem { 'compass': ruby_version => '2.1.1' }
 rbenv::gem { 'pg': ruby_version => '2.1.1' }
 rbenv::gem { 'foreman': ruby_version => '2.1.1' }
-rbenv::gem { 'rails': ruby_version => '2.1.1', version => '4.1.0' }
+#rbenv::gem { 'rails': ruby_version => '2.1.1', version => '4.1.0' }
 
 
 # class { 'nodejs': 
@@ -43,7 +43,7 @@ rbenv::gem { 'rails': ruby_version => '2.1.1', version => '4.1.0' }
 
 class { 'postgresql::globals':
   manage_package_repo => true,
-  version             => '9.3',
+  version             => '9.3'
 }->
 class { 'postgresql::server': 
 }
@@ -52,4 +52,11 @@ postgresql::server::db { 'i64885':
   user     => 'vagrant',
   password => postgresql_password('vagrant', '@bc123'),
 }
+
+postgresql::server::db { 'i64885_test':
+  user     => 'vagrant',
+  password => postgresql_password('vagrant', '@bc123'),
+}
+
+
 
