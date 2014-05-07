@@ -2,6 +2,10 @@ require 'test_helper'
 
 class VictimTest < ActiveSupport::TestCase
 
+  test "should get all victims" do
+    assert_equal 2, Victim.count, "Victims should be 2 instead of #{victims.count}"
+  end 
+
   test "should create victim" do
     victim = Victim.new
     victim.name = "New Victim"

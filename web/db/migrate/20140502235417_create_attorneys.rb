@@ -5,7 +5,6 @@ class CreateAttorneys < ActiveRecord::Migration
       t.json :contact
       t.json :location
       t.json :tags
-
       t.timestamps
     end
   end

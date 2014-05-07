@@ -15,8 +15,15 @@
 //  require turbolinks
 //  require_tree .
 
-//= require angular
-//= require angular-animate
-//= require angular-resource
+//  require angular
+//  require angular-animate
+//  require angular-resource
+//  require angular-route
+
+//= require_tree ../../../vendor/assets/javascripts/.
+//  require_tree .
 //= require app
-//= require_tree
+//= require_tree ./modules/.
+//= require_tree ./services/.
+//= require_tree ./controllers/.
+

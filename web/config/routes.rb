@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+
+  # Routes that serves templates
+  get '/templates/:path.html' => 'templates#template', :constraints => { :path => /.+/  }
+
+  namespace :api do
+    resources :victims
+    resources :issuies
+  end
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -54,11 +65,7 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  namespace :api do
-    resources :victims
-    resources :issuies
-  end
-
-
+  
+  #devise_for :users, :controllers => { omniauth_callbacks: "omniauth_callbacks" }
 
 end

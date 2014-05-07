@@ -1,5 +1,5 @@
 doctype html
-html ng-app="" lang="en"
+html lang="en" ng-app="i64885App"
   head
     title i64885
     meta charset="utf-8"
@@ -7,8 +7,32 @@ html ng-app="" lang="en"
     meta name="keywords" content="law,lawsuit"
     meta name="autohr" content=""
     = stylesheet_link_tag 'application', media: 'all' 
-    = javascript_include_tag 'application'
+    / stylesheet_link_tag    params[:controller]
+    css:
+      / http://stackoverflow.com/questions/10336194/twitter-bootstrap-top-nav-bar-blocking-top-content-of-the-page
+      body { padding-top: 60px; }
+      @media (max-width: 979px) { body { padding-top: 0px; } }
+    = content_for?(:css) ? yield(:css) : ''
+
+    / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries 
+    / WARNING: Respond.js doesn't work if you view the page via file:// -->
+    /[if lt IE 9]
+      script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"
+      script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"
+    
     = csrf_meta_tags
 
-  body ng-app="i64885App"
-    = yield
+  body
+    p class="notice"
+      = notice
+    p class="alert"
+      = alert
+    div ui-view=""
+    /= yield
+
+    script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"
+    script src="http://code.angularjs.org/1.2.16/angular-resource.min.js"
+    
+    = javascript_include_tag "application"
+    /= javascript_include_tag params[:controller]
+    = content_for?(:js) ? yield(:js) : ''
