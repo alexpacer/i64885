@@ -12,4 +12,6 @@
  *
  *= require_tree .
  *= require_self
+ *  require ../../../vendor/assets/stylesheets/bootstrap/css/bootstrap.min
+ *  require ../../../vendor/assets/stylesheets/bootstrap/css/bootstrap-theme.min
  */

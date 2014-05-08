@@ -1,3 +1,5 @@
+require "omniauth-facebook"
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -230,7 +232,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, "KEY", "SECRECT"
+  config.omniauth :facebook, "1436934326555132", ENV['i64885_FACEBOOK_SECRECT']
   config.omniauth :twitter, "KEY", "SECRECT"
   config.omniauth :linked_in, "KEY", "SECRECT"
 

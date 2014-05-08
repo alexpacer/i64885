@@ -3,7 +3,14 @@
 / a ui-sref="state2" 
 /   state2
 
+div ng-init="init()"
 
-h3 Home
+form role="form" ng-submit="create()" ng-controller="IssueCtrl" ng-init="formData.url='#{api_issuies_path}'"
+  h3 Create Issue
+  div class="form-group"
+    label for="detail" class="control-label" Detail
+    textarea class="form-control" rows="3" ng-model="formData.detail"
+  button type="submit" class="btn btn-default" Create
 
-li ng-repeat="item in varFromApp" {{item}}
+
+

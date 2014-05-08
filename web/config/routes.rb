@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   # Routes that serves templates
   get '/templates/:path.html' => 'templates#template', :constraints => { :path => /.+/  }
+
+  #devise_for :users
+  devise_for :users, :controllers => { omniauth_callbacks: "omniauth_callbacks" }
 
   namespace :api do
     resources :victims
@@ -66,6 +69,6 @@ Rails.application.routes.draw do
   #   end
 
   
-  #devise_for :users, :controllers => { omniauth_callbacks: "omniauth_callbacks" }
+  
 
 end

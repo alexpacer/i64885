@@ -1,17 +1,15 @@
 class User < ActiveRecord::Base
+  
   TEMP_EMAIL = 'change@me.com'
   TEMP_EMAIL_REGEX = /change@me.com/
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
-    :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-
-  validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+  validates_format_of :email, :without => TEMP_EMAIL_REGEX, :on => :update
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
-
     # Get the identity and user if they exist
     identity = Identity.find_for_oauth(auth)
     user = identity.user
@@ -40,4 +38,6 @@ class User < ActiveRecord::Base
     end
     user
   end
+
 end
+

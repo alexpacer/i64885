@@ -1,6 +1,6 @@
-class OmniauthCallbacksController < ApplicationController < Devise::OmniauthCallbacksController
+class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-def twitter
+  def twitter
     @user = User.find_for_oauth(env["omniauth.auth"], current_user)
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication
@@ -12,6 +12,8 @@ def twitter
   end
 
   def facebook
+    puts 'callback'
+    puts env["omniauth.auth"]
     @user = User.find_for_oauth(env["omniauth.auth"], current_user)
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication

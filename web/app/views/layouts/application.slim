@@ -4,15 +4,21 @@ html lang="en" ng-app="i64885App"
     title i64885
     meta charset="utf-8"
     meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta name="viewport" content="width=device-width, initial-scale=1"
     meta name="keywords" content="law,lawsuit"
     meta name="autohr" content=""
+    / Bootstrap
+    link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+    link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"
+
     = stylesheet_link_tag 'application', media: 'all' 
     / stylesheet_link_tag    params[:controller]
+
     css:
       / http://stackoverflow.com/questions/10336194/twitter-bootstrap-top-nav-bar-blocking-top-content-of-the-page
       body { padding-top: 60px; }
       @media (max-width: 979px) { body { padding-top: 0px; } }
-    = content_for?(:css) ? yield(:css) : ''
+      = content_for?(:css) ? yield(:css) : ''
 
     / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries 
     / WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,11 +33,29 @@ html lang="en" ng-app="i64885App"
       = notice
     p class="alert"
       = alert
-    div ui-view=""
-    /= yield
+    
+    div class="container"
+
+      - if user_signed_in? 
+        div 
+          hello 
+          = current_user.name
+      - else
+        div
+          = link_to "sign up", new_user_registration_path 
+          |  or 
+          = link_to "Sign in", new_user_session_path
+          | or 
+          = link_to "Facebook", user_omniauth_authorize_path(:facebook)
+
+
+
+
+      div ui-view=""
+      /= yield
 
     script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"
-    script src="http://code.angularjs.org/1.2.16/angular-resource.min.js"
+    script src="https://code.angularjs.org/1.2.16/angular-resource.min.js"
     
     = javascript_include_tag "application"
     /= javascript_include_tag params[:controller]

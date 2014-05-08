@@ -39,7 +39,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 
-gem 'angularjs-rails'
+#gem 'angularjs-rails'
 
 gem 'thin'
 
@@ -51,11 +51,6 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
 end
-
-
-
-
-
 
 gem 'devise'
 gem 'omniauth'
